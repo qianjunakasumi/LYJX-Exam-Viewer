@@ -9,8 +9,7 @@ type Viewer struct {
 }
 
 // New 返回 Viewer 查看器
-func New(acc string, pwd string) (v *Viewer, err error) {
-	v = &Viewer{account: acc, password: pwd}
-	err = v.Refresh()
-	return
+func New(acc string, pwd string) (*Viewer, error) {
+	v := &Viewer{account: acc, password: pwd}
+	return v, v.Refresh()
 }
