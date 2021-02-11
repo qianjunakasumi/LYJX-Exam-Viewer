@@ -3,6 +3,7 @@ package viewer
 import (
 	"encoding/json"
 	"errors"
+	"fmt"
 	"io/ioutil"
 	"net/http"
 	"strings"
@@ -22,28 +23,31 @@ func (v *Viewer) Refresh() (err error) {
 		strings.NewReader("Login_phone="+v.account+"&parpwd="+v.password),
 	)
 	if err != nil {
+		err = fmt.Errorf("viewer: %s", err)
 		return
 	}
 	defer resp.Body.Close()
 
 	res, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
+		err = fmt.Errorf("viewer: %s", err)
 		return
 	}
 
 	var status *refreshRes
 	err = json.Unmarshal(res, &status)
 	if err != nil {
+		err = fmt.Errorf("viewer: %s", err)
 		return
 	}
 
 	if m := status.Message; m != "ok" {
-		return errors.New("登录失败：" + m)
+		return errors.New("viewer: 登录失败：" + m)
 	}
 
 	token := resp.Header.Get("set-cookie")
 	if !strings.Contains(token, "PHPSESSID=") {
-		return errors.New("获取 Token 失败")
+		return errors.New("viewer: 获取 Token 失败")
 	}
 	v.token = token[10:36]
 
