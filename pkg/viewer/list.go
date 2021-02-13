@@ -3,18 +3,20 @@ package viewer
 import (
 	"errors"
 	"fmt"
-	"github.com/PuerkitoBio/goquery"
 	"time"
+
+	"github.com/PuerkitoBio/goquery"
 )
 
-// History 历史
+// History 历史。
 type History struct {
 	ID   string    // 项目标识号
 	Name string    // 项目
 	Date time.Time // 时间
 }
 
-// GetExamHistory 获取历史考试
+// GetExamHistory 获取历史考试。
+// 返回由最近至最远的考试项目。
 func (v *Viewer) GetExamHistory() (h []*History, err error) {
 
 	res, err := v.getWithToken("https://mic.fjjxhl.com/42baobaobanpai/index.php/Admin/Zzy/lately")
