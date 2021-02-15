@@ -49,6 +49,7 @@ func (v *Viewer) GetExamHistory() (h []*History, err error) {
 		}
 
 		hi.id = i
+		hi.super = v
 		h = append(h, hi)
 	})
 
