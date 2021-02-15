@@ -8,13 +8,6 @@ import (
 	"github.com/PuerkitoBio/goquery"
 )
 
-// History 历史。
-type History struct {
-	ID   string    // 项目标识号
-	Name string    // 项目
-	Date time.Time // 时间
-}
-
 // GetExamHistory 获取历史考试。
 // 返回由最近至最远的考试项目。
 func (v *Viewer) GetExamHistory() (h []*History, err error) {
@@ -55,7 +48,7 @@ func (v *Viewer) GetExamHistory() (h []*History, err error) {
 			return
 		}
 
-		hi.ID = i
+		hi.id = i
 		h = append(h, hi)
 	})
 
