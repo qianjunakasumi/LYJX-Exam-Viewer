@@ -55,11 +55,11 @@ func (v *Viewer) Refresh() (err error) {
 	return
 }
 
-// switchStudentsProfile 切换学生档案。
+// SwitchStudentsProfile 切换学生档案。
 // 当账号下只有一个学生档案时无需切换。
 // 若存在多个学生档案 且 获取的成绩信息不是您本人的情况下
 // 可以使用切换档案切换为您的个人档案
-func (v Viewer) switchStudentsProfile() (err error) {
+func (v Viewer) SwitchStudentsProfile() (err error) {
 
 	values, err := url.ParseQuery("num=" + v.number + "&name=" + v.name)
 	if err != nil {

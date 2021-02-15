@@ -11,7 +11,8 @@ type Viewer struct {
 }
 
 // New 返回 Viewer 查看器。
-// acc：账号；pwd：密码；num：学籍号；name：姓名
+// acc：账号；pwd：密码；num：学籍号；name：姓名。
+// 如果您的账号下有多个学生档案清使用 SwitchStudentsProfile 方法切换
 func New(acc, pwd, num, name string) (*Viewer, error) {
 	v := &Viewer{account: acc, password: pwd, number: num, name: name}
 	return v, v.Refresh()
