@@ -9,7 +9,7 @@ import (
 )
 
 // GetExamHistory 获取历史考试。
-// 返回由最近至最远的考试项目。
+// 返回由最近至最远的考试项目
 func (v *Viewer) GetExamHistory() (h []*History, err error) {
 
 	res, err := v.getWithToken("https://mic.fjjxhl.com/42baobaobanpai/index.php/Admin/Zzy/lately")

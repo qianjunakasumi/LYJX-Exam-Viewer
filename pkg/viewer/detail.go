@@ -46,7 +46,7 @@ type (
 	}
 )
 
-// GetDetail 获取详情
+// GetDetail 获取考试详情
 func (h *History) GetDetail() (d *Detail, err error) {
 
 	values, err := url.ParseQuery("item_id=" + h.id + "&leixing=x")
